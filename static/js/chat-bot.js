@@ -46,7 +46,7 @@ function renderMessage(role, text) {
         avatar.className = "ai-avatar";
 
         const img = document.createElement("img");
-        img.src = "../static/img/ai.avif";
+        img.src = "../static/img/ai.jpg";
         img.alt = "ai";
         img.className = "ai-img";
 
