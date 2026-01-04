@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <title>چت بات</title>
+    <link rel="stylesheet" href="{% static 'css/chat-bot.css' %}">
+</head>
+
+<body>
+
+    <div class="chat-box">
+        <div class="info">
+            <div class="card">
+                <div class="name">
+                    دستیار هوش مصنوعی
+                </div>
+                <img src="{% static 'img/ai.avif' %}" alt="profile" class="profile">
+            </div>
+        </div>
+        <div id="messages" class="messages"></div>
+
+        <div class="input-box">
+            <input id="userInput" placeholder="پیام خود را بنویسید..." autocomplete="off" dir="rtl" />
+            <button id="sendBtn">ارسال</button>
+        </div>
+    </div>
+
+    <script src="{% static 'js/chat-bot.js' %}"></script>
+</body>
+
+</html>
