@@ -18,6 +18,3 @@ $RECYCLE.BIN/
 .vscode/
 .history/
 *.code-workspace
-
-# static
-staticfiles/
