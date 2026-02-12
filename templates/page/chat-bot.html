@@ -13,17 +13,21 @@
 <body>
 
     <div class="chat-box">
-        <div class="info">
-            <div class="card">
-                <div class="name">
-                    <p>
-                        من همیار پیوند کلیه مجهز به هوش مصنوعی هستم. به من بگو چه کمکی از من می خواهی؟
-                    </p>
-                </div>
+        <div id="messages" class="messages">
+            <div class="title">
+                <h2>
+                    همیار پیوند کلیه
+                </h2>
                 <img src="{% static 'img/ai.jpg' %}" alt="profile" class="profile">
             </div>
+            <div class="card">
+                <div class="name">
+                    <h3>
+                        من همیار پیوند کلیه مجهز به هوش مصنوعی هستم. به من بگو چه کمکی از من می خواهی؟
+                    </h3>
+                </div>
+            </div>
         </div>
-        <div id="messages" class="messages"></div>
 
         <div class="input-box">
             <input id="userInput" placeholder="چطور می توانم به شما کمک کنم؟" autocomplete="off" dir="rtl" />

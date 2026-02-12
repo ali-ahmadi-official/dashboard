@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'config.middleware.CSPFrameAncestorsMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -129,3 +130,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GAPGPT_API_KEY = "sk-AdPmxjn95ilaIvMy3sESV8jH5lQJxtftHURitD5Xfn1RKmSg"
