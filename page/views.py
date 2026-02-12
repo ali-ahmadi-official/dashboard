@@ -35,10 +35,10 @@ def chat_api(request):
 
         combined_data = {
             "conditions": load_json_file("conditions.json"),
-            "information_1": load_json_file("information_1.json"),
-            "information_2": load_json_file("information_2.json"),
+            # "information_1": load_json_file("information_1.json"),
+            # "information_2": load_json_file("information_2.json"),
             "information_3": load_json_file("information_3.json"),
-            "information_4": load_json_file("information_4.json"),
+            # "information_4": load_json_file("information_4.json"),
         }
 
         rule_1 = """
@@ -70,7 +70,7 @@ def chat_api(request):
                 "Content-Type": "application/json",
             },
             json={
-                "model": "gpt-4o-mini",
+                "model": "gapgpt-deepseek-v3",
                 "messages": [
                     {"role": "system", "content": rule_1},
                     {"role": "system", "content": rule_2},
