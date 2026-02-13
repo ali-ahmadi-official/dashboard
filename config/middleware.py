@@ -1,7 +1,7 @@
 class CSPFrameAncestorsMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
-        self.allowed_ancestor = "http://127.0.0.1:5500"
+        self.allowed_ancestor = "http://localhost:8080 http://127.0.0.1:8080"
 
     def __call__(self, request):
         response = self.get_response(request)
