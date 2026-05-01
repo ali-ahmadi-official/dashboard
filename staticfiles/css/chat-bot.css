@@ -60,8 +60,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    padding: 10px 0;
     width: 100%;
+    background: #fce597;
 }
 
 .hidden {
@@ -204,4 +205,121 @@ body {
 .messages::-webkit-scrollbar-thumb {
     background: #b5c3d1;
     border-radius: 3px;
+}
+
+.day {
+    text-align: center;
+    padding: 5px 0;
+    margin: 0 auto;
+    background: rgba(240, 240, 219, 1);
+    color: #30364F;
+    font-size: 14px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100px;
+    border-radius: 5px;
+}
+
+#floating-container {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 10000;
+}
+
+.icon-button {
+    border: none;
+    background: #fce597;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.list-panel {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 280px;
+    max-height: 80vh;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.list-panel-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(20px);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    font-weight: bold;
+    background-color: #fce597;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.list-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-panel ul a {
+    color: #000;
+    text-decoration: none;
+}
+
+.list-panel ul a:active {
+    color: #000;
+    text-decoration: none;
+}
+
+.list-panel li {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: right;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.list-panel li:last-child {
+    border-bottom: none;
+}
+
+.list-panel li:hover {
+    background-color: rgba(240, 240, 219, 1);
+}
+
+#down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #30364F;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #fff;
+    position: fixed;
+    bottom: 70px;
+    right: 30px;
+    opacity: 1;
+    z-index: 9997;
+    pointer-events: auto;
+    border: 2px solid #30364F;
+}
+
+#down.hidden {
+    opacity: 0;
+    pointer-events: none;
 }

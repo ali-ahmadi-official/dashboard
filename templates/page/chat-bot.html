@@ -13,19 +13,43 @@
 <body>
 
     <div class="chat-box">
-        <div id="messages" class="messages">
-            <div class="title">
+        <div class="title">
                 <h2>
                     همیار پیوند کلیه
                 </h2>
                 <img src="{% static 'img/ai.jpg' %}" alt="profile" class="profile">
             </div>
+        <div id="messages" class="messages">
+            {% for message_by_day in messages_by_day %}
+                <div class="day">{{ message_by_day.date }}</div>
+                {% for message in message_by_day.messages %}
+                    {% if message.messager == "پیام کاربر" %}
+                    <div class="msg user" dir="rtl">{{ message.body|safe }}<br><br><span style="font-size: smaller;">{{ message.time }}</span></div>
+                    {% else %}
+                    <div class="ai-wrapper">
+                        <div class="ai-avatar">
+                            <img src="{% static 'img/ai.jpg' %}" alt="ai" class="ai-img">
+                        </div>
+                        <div class="msg ai" dir="rtl">{{ message.body|safe }}<br><br><span style="font-size: smaller;">{{ message.time }}</span></div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
             <div class="card">
                 <div class="name">
                     <h3>
                         من همیار پیوند کلیه مجهز به هوش مصنوعی هستم. به من بگو چه کمکی از من می خواهی؟
                     </h3>
                 </div>
+            </div>
+            <div id="down" style="cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                    <path fill-rule="evenodd"
+                        d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                </svg>
             </div>
         </div>
 
@@ -35,7 +59,49 @@
         </div>
     </div>
 
+    <div id="floating-container">
+        <button id="toggle-button" class="icon-button">
+            &#9776;
+        </button>
+
+        <div id="list-panel" class="list-panel list-panel-hidden">
+            <div class="panel-header">
+                <span>گفت‌وگوها</span>
+            </div>
+            <ul>
+                <a href="{% url 'all_chats' %}">
+                    <li>گفت‌وگو جدید &#x2795;</li>
+                </a>
+                {% for chat in chat_list %}
+                <a href="{% url 'chat' chat.id %}">
+                    {% if chat.full_title == chat.title %}
+                    <li
+                    {% if conversation.id == chat.id %}
+                    style="background-color: rgba(240, 240, 219, 1);"
+                    {% endif %}>{{ chat.title }} &#128172;</li>
+                    {% else %}
+                    <li
+                    {% if conversation.id == chat.id %}
+                    style="background-color: rgba(240, 240, 219, 1);"
+                    {% endif %}>...{{ chat.title }} &#128172;</li>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
     <script src="{% static 'js/chat-bot.js' %}"></script>
+
+    <script>
+        const elements = document.querySelectorAll('.msg');
+        elements.forEach(element => {
+            let htmlContent = element.innerHTML;
+    
+            htmlContent = htmlContent.replace(/\*\*(.+?)\*\*/g, '<strong style="color: red;">$1</strong>');
+            element.innerHTML = htmlContent;
+        });
+    </script>
 </body>
 
 </html>
