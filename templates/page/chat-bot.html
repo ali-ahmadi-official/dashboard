@@ -8,32 +8,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>چت بات</title>
     <link rel="stylesheet" href="{% static 'css/chat-bot.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'img/ai.png' %}">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
 </head>
 
 <body>
 
     <div class="chat-box">
         <div class="title">
-                <h2>
-                    همیار پیوند کلیه
-                </h2>
-                <img src="{% static 'img/ai.jpg' %}" alt="profile" class="profile">
-            </div>
+            <h2>
+                همیار پیوند کلیه
+            </h2>
+            <img src="{% static 'img/ai.png' %}" alt="profile" class="profile">
+        </div>
         <div id="messages" class="messages">
             {% for message_by_day in messages_by_day %}
-                <div class="day">{{ message_by_day.date }}</div>
-                {% for message in message_by_day.messages %}
-                    {% if message.messager == "پیام کاربر" %}
-                    <div class="msg user" dir="rtl">{{ message.body|safe }}<br><br><span style="font-size: smaller;">{{ message.time }}</span></div>
-                    {% else %}
-                    <div class="ai-wrapper">
-                        <div class="ai-avatar">
-                            <img src="{% static 'img/ai.jpg' %}" alt="ai" class="ai-img">
-                        </div>
-                        <div class="msg ai" dir="rtl">{{ message.body|safe }}<br><br><span style="font-size: smaller;">{{ message.time }}</span></div>
-                    </div>
-                    {% endif %}
-                {% endfor %}
+            <div class="day">{{ message_by_day.date }}</div>
+            {% for message in message_by_day.messages %}
+            {% if message.messager == "پیام بیمار" %}
+            <div class="msg user" dir="rtl">
+                <span class="msg-text">{{ message.body }}</span>
+                <br>
+                <div class="msg-time">{{ message.time }}</div>
+            </div>
+            {% else %}
+            <div class="ai-wrapper">
+                <div class="ai-avatar">
+                    <img src="{% static 'img/ai.png' %}" alt="ai" class="ai-img">
+                </div>
+                <div class="msg ai" dir="rtl">
+                    <span class="msg-text">{{ message.body }}</span>
+                    <br>
+                    <div class="msg-time">{{ message.time }}</div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
             {% endfor %}
             <div class="card">
                 <div class="name">
@@ -74,34 +85,22 @@
                 </a>
                 {% for chat in chat_list %}
                 <a href="{% url 'chat' chat.id %}">
-                    {% if chat.full_title == chat.title %}
-                    <li
-                    {% if conversation.id == chat.id %}
-                    style="background-color: rgba(240, 240, 219, 1);"
-                    {% endif %}>{{ chat.title }} &#128172;</li>
-                    {% else %}
-                    <li
-                    {% if conversation.id == chat.id %}
-                    style="background-color: rgba(240, 240, 219, 1);"
-                    {% endif %}>...{{ chat.title }} &#128172;</li>
-                    {% endif %}
+                    <li dir="rtl" {% if conversation.id == chat.id %} style="background-color: var(--bg-secondary);" {% endif %}>
+                        &#128172; {{ chat.title|truncatechars:25 }}
+                    </li>
                 </a>
                 {% endfor %}
             </ul>
         </div>
     </div>
 
-    <script src="{% static 'js/chat-bot.js' %}"></script>
+    <button id="theme-toggle" class="theme-toggle" title="تغییر تم">
+        ☾
+    </button>
 
-    <script>
-        const elements = document.querySelectorAll('.msg');
-        elements.forEach(element => {
-            let htmlContent = element.innerHTML;
-    
-            htmlContent = htmlContent.replace(/\*\*(.+?)\*\*/g, '<strong style="color: red;">$1</strong>');
-            element.innerHTML = htmlContent;
-        });
-    </script>
+    <script src="{% static 'js/chat-bot.js' %}"></script>
+    <script src="{% static 'js/format.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
 </body>
 
 </html>

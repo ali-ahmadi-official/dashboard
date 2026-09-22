@@ -10,182 +10,518 @@ h1 {
 }
 
 
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+
+/* =========================================================
+   THEME VARIABLES
+========================================================= */
+
+:root {
+    /* Main colors */
+    --bg-main: #fce597;
+    --bg-secondary: #f0f0db;
+    --bg-input: #ffefb9;
+
+    /* Main navy */
+    --primary: #30364F;
+    --primary-text: #ffffff;
+
+    /* Text */
+    --text-main: #30364F;
+    --text-secondary: #555555;
+
+    /* AI message */
+    --ai-bg: #ffffff;
+    --ai-border: #dcdcdc;
+
+    /* Panels */
+    --panel-bg: #ffffff;
+    --panel-border: #cccccc;
+
+    /* Tables */
+    --table-bg: #ffffff;
+    --table-header: #fce597;
+    --table-border: #e8e8e8;
+
+    /* General */
+    --border-light: #e1e1e1;
+    --hover-bg: #f0f0db;
+
+    /* Scroll */
+    --scrollbar: #b5c3d1;
+
+    /* Special */
+    --strong-color: #d94b4b;
+    --code-bg: #f1f1f1;
+    --blockquote-bg: #f7f7f7;
+
+    /* Theme button */
+    --theme-button-bg: #30364F;
+    --theme-button-color: #ffffff;
+}
+
+
+/* =========================================================
+   DARK THEME
+========================================================= */
+
+body.dark-theme {
+
+    /* Main */
+    --bg-main: #171a24;
+    --bg-secondary: #202431;
+    --bg-input: #202431;
+
+    /* Primary */
+    --primary: #fce597;
+    --primary-text: #171a24;
+
+    /* Text */
+    --text-main: #f1f1f1;
+    --text-secondary: #b9bdc8;
+
+    /* AI */
+    --ai-bg: #242938;
+    --ai-border: #3b4152;
+
+    /* Panels */
+    --panel-bg: #242938;
+    --panel-border: #3b4152;
+
+    /* Tables */
+    --table-bg: #242938;
+    --table-header: #30364F;
+    --table-border: #3b4152;
+
+    /* General */
+    --border-light: #3b4152;
+    --hover-bg: #30364F;
+
+    /* Scroll */
+    --scrollbar: #596276;
+
+    /* Special */
+    --strong-color: #ff7b7b;
+    --code-bg: #303441;
+    --blockquote-bg: #2b2f3d;
+
+    /* Theme button */
+    --theme-button-bg: #fce597;
+    --theme-button-color: #171a24;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
 body {
     font-family: 'Kamrn', sans-serif;
     display: flex;
     justify-content: center;
     min-height: 100vh;
+
+    background: var(--bg-main);
+    color: var(--text-main);
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
+
+
+/* =========================================================
+   CHAT BOX
+========================================================= */
 
 .chat-box {
     width: 100vw;
     height: 100vh;
+
     display: flex;
     flex-direction: column;
+
     overflow: hidden;
+
+    background: var(--bg-main);
 }
 
-/* نوار اطلاعات */
+
+/* =========================================================
+   INFO BAR
+========================================================= */
+
 .info {
     display: flex;
     justify-content: center;
     align-items: center;
+
     padding: 20px;
-    background: #fce597;
-    background: radial-gradient(circle, rgba(252, 229, 151, 1) 0%, rgba(240, 240, 219, 1) 100%);
+
+    background: var(--bg-main);
+
+    background: radial-gradient(
+        circle,
+        var(--bg-main) 0%,
+        var(--bg-secondary) 100%
+    );
+
+    transition: background 0.3s ease;
 }
+
+
+/* =========================================================
+   CARD
+========================================================= */
 
 .card {
     display: flex;
     justify-content: center;
     align-items: center;
+
     position: fixed;
+
     text-align: center;
+
     width: 80vw;
+
     top: 40%;
     left: 50%;
+
     transform: translate(-50%, -50%);
+
     z-index: 9999;
+
     opacity: 1;
+
     transition: all 0.5s ease;
 }
+
+
+/* =========================================================
+   TITLE
+========================================================= */
 
 .title {
     display: flex;
     justify-content: center;
     align-items: center;
+
     padding: 10px 0;
+
     width: 100%;
-    background: #fce597;
+
+    background: var(--bg-main);
+
+    color: var(--text-main);
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
+
+
+/* =========================================================
+   HIDDEN
+========================================================= */
 
 .hidden {
     opacity: 0;
 }
 
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
 .profile {
     width: 40px;
     height: 40px;
+
     border-radius: 50%;
+
     margin-left: 8px;
 }
+
+
+/* =========================================================
+   NAME
+========================================================= */
 
 .name {
     display: flex;
     justify-content: center;
     align-items: center;
+
     margin-right: 8px;
+
+    color: var(--text-main);
 }
 
-/* نوار پیام‌ها */
+
+/* =========================================================
+   MESSAGES AREA
+========================================================= */
+
 .messages {
     flex: 1;
+
     overflow-y: auto;
+
     padding: 15px;
-    background: #fce597;
-    background: radial-gradient(circle, rgba(252, 229, 151, 1) 0%, rgba(240, 240, 219, 1) 100%);
+
+    background: var(--bg-main);
+
+    background: radial-gradient(
+        circle,
+        var(--bg-main) 0%,
+        var(--bg-secondary) 100%
+    );
+
     scroll-behavior: smooth;
+
     display: flex;
     flex-direction: column;
+
+    transition: background 0.3s ease;
 }
 
-/* پیام‌ها */
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
 .msg {
-    max-width: 75%;
+    max-width: 90%;
+
     padding: 10px 14px;
+
     margin-bottom: 12px;
+
     border-radius: 12px;
+
     font-size: 14px;
+
     line-height: 1.5;
+
     animation: fadeIn 0.25s ease;
-    white-space: pre-wrap;
+
+    white-space: normal;
 }
 
-/* پیام کاربر (راست) */
+
+/* =========================================================
+   USER MESSAGE
+========================================================= */
+
 .user {
-    background: #30364F;
-    color: #ffffff;
+    background: var(--primary);
+
+    color: var(--primary-text);
+
     align-self: flex-end;
+
     border-bottom-right-radius: 4px;
+
     text-align: right;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
-/* پیام هوش مصنوعی (چپ) */
+
+/* =========================================================
+   AI MESSAGE WRAPPER
+========================================================= */
+
 .ai-wrapper {
     display: flex;
     align-items: flex-end;
+
     margin-bottom: 3px;
 }
+
+
+/* =========================================================
+   AI AVATAR
+========================================================= */
 
 .ai-avatar {
     display: flex;
     justify-content: center;
     align-items: center;
+
     width: 32px;
     height: 32px;
+
     border-radius: 50%;
+
     background: #bcd0e0;
+
     margin-right: 8px;
+
     overflow: hidden;
 }
+
+
+/* =========================================================
+   AI IMAGE
+========================================================= */
 
 .ai-img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
 }
 
+
+/* =========================================================
+   AI MESSAGE
+========================================================= */
+
 .ai {
-    background: #ffffff;
-    border: 1px solid #dcdcdc;
+    background: var(--ai-bg);
+
+    border: 1px solid var(--ai-border);
+
     border-bottom-left-radius: 4px;
+
     align-self: flex-start;
-    max-width: 75%;
+
+    max-width: 90%;
+
     padding: 10px 14px;
+
     border-radius: 12px;
+
+    color: var(--text-main);
+
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
 }
 
-/* نوار ورودی */
+
+/* =========================================================
+   INPUT BAR
+========================================================= */
+
 .input-box {
     display: flex;
+
     padding: 10px;
-    background: #fce597;
-    background: radial-gradient(circle, rgb(255, 239, 185) 0%, rgba(240, 240, 219, 1) 100%);
+
+    background: var(--bg-input);
+
+    background: radial-gradient(
+        circle,
+        var(--bg-input) 0%,
+        var(--bg-secondary) 100%
+    );
+
+    transition: background 0.3s ease;
 }
+
+
+/* =========================================================
+   INPUT
+========================================================= */
 
 .input-box input {
     flex: 1;
+
     padding: 10px;
+
     border-radius: 20px;
+
     border: 1px solid #ccc;
+
     outline: none;
+
     font-size: 14px;
+
+    background: var(--ai-bg);
+
+    color: var(--text-main);
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
 }
+
+
+/* Dark input border */
+
+body.dark-theme .input-box input {
+    border-color: var(--ai-border);
+}
+
+
+/* Placeholder */
+
+.input-box input::placeholder {
+    color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   SEND BUTTON
+========================================================= */
 
 .input-box button {
     margin-left: 10px;
+
     padding: 10px 18px;
+
     border: none;
-    background: #30364F;
-    color: white;
+
+    background: var(--primary);
+
+    color: var(--primary-text);
+
     border-radius: 20px;
+
     cursor: pointer;
+
     font-size: 14px;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.2s ease;
+}
+
+.input-box button:hover {
+    transform: translateY(-1px);
 }
 
 .input-box button:disabled {
     opacity: 0.5;
     cursor: default;
+
+    transform: none;
 }
 
-/* انیمیشن ورود پیام */
+
+/* =========================================================
+   FADE IN
+========================================================= */
+
 @keyframes fadeIn {
+
     from {
         opacity: 0;
         transform: translateY(6px);
@@ -195,102 +531,271 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+
 }
 
-/* اسکرول‌بار شبیه تلگرام */
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
 .messages::-webkit-scrollbar {
     width: 6px;
 }
 
 .messages::-webkit-scrollbar-thumb {
-    background: #b5c3d1;
+    background: var(--scrollbar);
+
     border-radius: 3px;
 }
 
+
+/* =========================================================
+   DAY
+========================================================= */
+
 .day {
     text-align: center;
+
     padding: 5px 0;
+
     margin: 0 auto;
-    background: rgba(240, 240, 219, 1);
-    color: #30364F;
+
+    background: var(--bg-secondary);
+
+    color: var(--text-main);
+
     font-size: 14px;
+
     position: sticky;
+
     top: 0;
+
     z-index: 1000;
+
     width: 100px;
+
     border-radius: 5px;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
+
+
+/* =========================================================
+   FLOATING CONTAINER
+========================================================= */
 
 #floating-container {
     position: fixed;
+
     top: 15px;
     right: 20px;
+
     z-index: 10000;
 }
 
+
+/* =========================================================
+   GENERAL ICON BUTTON
+========================================================= */
+
 .icon-button {
     border: none;
-    background: #fce597;
+
+    background: var(--bg-main);
+
+    color: var(--text-main);
+
     font-size: 20px;
+
     cursor: pointer;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
+
+
+/* =========================================================
+   THEME TOGGLE BUTTON
+========================================================= */
+
+.theme-toggle {
+    width: 30px;
+    height: 30px;
+
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    z-index: 10000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--theme-button-bg);
+
+    color: var(--theme-button-color);
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.08);
+
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================================================
+   LIST PANEL
+========================================================= */
 
 .list-panel {
     position: absolute;
+
     top: 40px;
     right: 0;
+
     width: 280px;
     max-height: 80vh;
-    background-color: white;
-    border: 1px solid #ccc;
+
+    background-color: var(--panel-bg);
+
+    border: 1px solid var(--panel-border);
+
     border-radius: 10px;
+
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+
     overflow-y: auto;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+    transition:
+        opacity 0.3s ease-in-out,
+        transform 0.3s ease-in-out,
+        background-color 0.3s ease,
+        border-color 0.3s ease;
+
     opacity: 1;
+
     transform: translateX(0);
 }
 
+
+/* =========================================================
+   HIDDEN LIST PANEL
+========================================================= */
+
 .list-panel-hidden {
     opacity: 0;
+
     pointer-events: none;
+
     transform: translateX(20px);
 }
 
+
+/* =========================================================
+   PANEL HEADER
+========================================================= */
+
 .panel-header {
     display: flex;
+
     justify-content: flex-end;
+
     align-items: center;
+
     padding: 10px 15px;
-    border-bottom: 1px solid #eee;
+
+    border-bottom: 1px solid var(--border-light);
+
     font-weight: bold;
-    background-color: #fce597;
+
+    background-color: var(--bg-main);
+
+    color: var(--text-main);
+
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
 }
+
+
+/* =========================================================
+   LIST
+========================================================= */
 
 .list-panel ul {
     list-style: none;
+
     padding: 0;
     margin: 0;
 }
 
+
+/* =========================================================
+   LIST LINKS
+========================================================= */
+
 .list-panel ul a {
-    color: #000;
+    color: var(--text-main);
+
     text-decoration: none;
+
+    transition: color 0.3s ease;
 }
 
 .list-panel ul a:active {
-    color: #000;
+    color: var(--text-main);
+
     text-decoration: none;
 }
 
+
+/* =========================================================
+   LIST ITEMS
+========================================================= */
+
 .list-panel li {
     padding: 12px 15px;
-    border-bottom: 1px solid #f0f0f0;
+
+    border-bottom: 1px solid var(--border-light);
+
     text-align: right;
+
     cursor: pointer;
-    transition: background-color 0.2s;
+
+    color: var(--text-main);
+
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        border-color 0.2s;
 }
 
 .list-panel li:last-child {
@@ -298,28 +803,462 @@ body {
 }
 
 .list-panel li:hover {
-    background-color: rgba(240, 240, 219, 1);
+    background-color: var(--hover-bg);
 }
+
+
+/* =========================================================
+   DOWN BUTTON
+========================================================= */
 
 #down {
     display: flex;
+
     justify-content: center;
     align-items: center;
-    color: #30364F;
+
+    color: var(--text-main);
+
     width: 50px;
     height: 50px;
+
     border-radius: 100%;
-    background-color: #fff;
+
+    background-color: var(--ai-bg);
+
     position: fixed;
+
     bottom: 70px;
     right: 30px;
+
     opacity: 1;
+
     z-index: 9997;
+
     pointer-events: auto;
-    border: 2px solid #30364F;
+
+    border: 2px solid var(--text-main);
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        opacity 0.3s ease;
 }
+
+
+/* =========================================================
+   DOWN HIDDEN
+========================================================= */
 
 #down.hidden {
     opacity: 0;
+
     pointer-events: none;
+}
+
+
+/* =========================================================
+   MESSAGE TEXT
+========================================================= */
+
+.msg-text {
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   PARAGRAPH
+========================================================= */
+
+.msg-text p {
+    margin: 0 0 10px;
+}
+
+.msg-text p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   BOLD
+========================================================= */
+
+.msg-text strong {
+    color: var(--strong-color);
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   HEADINGS
+========================================================= */
+
+.msg-text h1,
+.msg-text h2,
+.msg-text h3 {
+    margin: 14px 0 8px;
+
+    color: var(--text-main);
+
+    font-weight: bold;
+
+    line-height: 1.6;
+}
+
+.msg-text h1 {
+    font-size: 18px;
+}
+
+.msg-text h2 {
+    font-size: 17px;
+}
+
+.msg-text h3 {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   LISTS
+========================================================= */
+
+.msg-text ul,
+.msg-text ol {
+    margin: 8px 0 12px;
+
+    padding-right: 24px;
+}
+
+.msg-text li {
+    margin-bottom: 5px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.msg-text table {
+    width: 100%;
+
+    max-width: 100%;
+
+    margin: 12px 0;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border-light);
+
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    background: var(--table-bg);
+
+    color: var(--text-main);
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+/* =========================================================
+   TABLE CELLS
+========================================================= */
+
+.msg-text th,
+.msg-text td {
+    padding: 8px 10px;
+
+    border-left: 1px solid var(--table-border);
+
+    border-bottom: 1px solid var(--table-border);
+
+    text-align: right;
+
+    vertical-align: middle;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.msg-text th {
+    background: var(--table-header);
+
+    color: var(--text-main);
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   LAST ROW
+========================================================= */
+
+.msg-text tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   LAST COLUMN
+========================================================= */
+
+.msg-text th:last-child,
+.msg-text td:last-child {
+    border-left: none;
+}
+
+
+/* =========================================================
+   HR
+========================================================= */
+
+.msg-text hr {
+    border: none;
+
+    border-top: 1px solid var(--border-light);
+
+    margin: 12px 0;
+}
+
+
+/* =========================================================
+   BLOCKQUOTE
+========================================================= */
+
+.msg-text blockquote {
+    margin: 10px 0;
+
+    padding: 8px 12px;
+
+    border-right: 4px solid var(--primary);
+
+    background: var(--blockquote-bg);
+
+    border-radius: 6px;
+
+    color: var(--text-main);
+}
+
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+.msg-text a {
+    color: var(--primary);
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   INLINE CODE
+========================================================= */
+
+.msg-text code {
+    background: var(--code-bg);
+
+    color: var(--text-main);
+
+    padding: 2px 5px;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+    direction: ltr;
+}
+
+
+/* =========================================================
+   PRE / CODE BLOCK
+========================================================= */
+
+.msg-text pre {
+    background: var(--code-bg);
+
+    color: var(--text-main);
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    overflow-x: auto;
+
+    margin: 10px 0;
+}
+
+
+/* =========================================================
+   TYPING INDICATOR
+========================================================= */
+
+.typing-indicator {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 4px;
+}
+
+.typing-indicator span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background-color: currentColor;
+
+    opacity: 0.4;
+
+    animation: typing-bounce 1.4s infinite ease-in-out both;
+}
+
+.typing-indicator span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+
+/* =========================================================
+   Conversation List Scrollbar
+========================================================= */
+
+/* Chrome / Edge / Safari */
+.list-panel::-webkit-scrollbar {
+    width: 5px;
+}
+
+.list-panel::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 10px 0;
+}
+
+.list-panel::-webkit-scrollbar-thumb {
+    background: #b5c3d1;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+}
+
+.list-panel::-webkit-scrollbar-thumb:hover {
+    background: #8f9daf;
+}
+
+
+/* Dark Mode */
+body.dark-theme .list-panel::-webkit-scrollbar-thumb {
+    background: #596276;
+}
+
+body.dark-theme .list-panel::-webkit-scrollbar-thumb:hover {
+    background: #737d94;
+}
+
+
+/* Firefox */
+.list-panel {
+    scrollbar-width: thin;
+    scrollbar-color: #b5c3d1 transparent;
+}
+
+body.dark-theme .list-panel {
+    scrollbar-color: #596276 transparent;
+}
+
+
+/* =========================================================
+   TYPING ANIMATION
+========================================================= */
+
+@keyframes typing-bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.6);
+
+        opacity: 0.4;
+    }
+
+    40% {
+        transform: scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   DARK MODE EXTRA ADJUSTMENTS
+========================================================= */
+
+body.dark-theme .msg-text strong {
+    color: var(--strong-color);
+}
+
+body.dark-theme .profile {
+    border: 1px solid var(--ai-border);
+}
+
+body.dark-theme .ai-avatar {
+    background: #30364F;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .msg {
+        max-width: 94%;
+    }
+
+    .ai {
+        max-width: 94%;
+    }
+
+    .user {
+        max-width: 94%;
+    }
+
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+
+        font-size: 19px;
+    }
+
+    #floating-container {
+        top: 12px;
+        right: 15px;
+    }
+
+    #down {
+        right: 20px;
+        bottom: 70px;
+    }
+
 }

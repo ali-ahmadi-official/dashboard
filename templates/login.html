@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ورود / ثبت‌نام</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Vazirmatn, Tahoma, sans-serif;
+        }
+
+        body {
+            background: #FCE597;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            width: 360px;
+            background: #fff9e8;
+            padding: 32px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(48, 54, 79, .18);
+            border: 2px solid #30364F22;
+        }
+
+        h2 {
+            color: #30364F;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        p {
+            color: #5c6278;
+            text-align: center;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            border: 2px solid #d8dce6;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+            transition: .2s;
+        }
+
+        input:focus {
+            border-color: #30364F;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #30364F;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        button:hover {
+            background: #252a3d;
+        }
+
+        .error {
+            background: #ffd9d9;
+            color: #8b1e1e;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .hint {
+            margin-top: 16px;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>ثبت‌نام / ورود</h2>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="نام کاربری" required>
+            <input type="password" name="password" placeholder="رمز عبور" required>
+
+            <button type="submit">ادامه</button>
+        </form>
+
+        <div class="hint">
+            با وارد کردن نام کاربری جدید، حساب شما ثبت‌نام خواهد شد.
+        </div>
+    </div>
+
+</body>
+
+</html>

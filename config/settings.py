@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-t8h-iv0=86fqyc_=h9kjnz*zp-f=1raju#-@l_gw43@79uq4o1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -131,4 +131,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-GAPGPT_API_KEY = "sk-AdPmxjn95ilaIvMy3sESV8jH5lQJxtftHURitD5Xfn1RKmSg"
+AI_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiI2YWIyNDg0NmY2OTcwN2MwOTg2NTAyYTIiLCJ0eXBlIjoiYWlfa2V5IiwiaWF0IjoxNzkwMDY4ODA2fQ.haRxqvn6AuBhXTSra26DIGdiKeul1MAKK9q3T4qWdys"
+AI_API_URL = "https://ai.liara.ir/api/6ab18d2776fa57bf5d9ed82a/v1"
+AI_MODEL_ID = "openai/gpt-5-mini"
+
+SESSION_COOKIE_AGE = 60 * 30
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = "Lax"
+
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SAMESITE = "Lax"

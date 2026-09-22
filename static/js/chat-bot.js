@@ -76,7 +76,21 @@ if (msg.length !== 0) {
 
 let data = null;
 
+function formatAIMessage(text) {
+    if (!text) return "";
+
+    const html = marked.parse(text, {
+        breaks: true,
+        gfm: true
+    });
+
+    return DOMPurify.sanitize(html);
+}
+
 function renderMessage(role, text) {
+    const currentTime = new Date();
+    const timeStr = `${String(currentTime.getHours()).padStart(2, "0")}:${String(currentTime.getMinutes()).padStart(2, "0")}`;
+
     if (role === "ai") {
         const wrapper = document.createElement("div");
         wrapper.className = "ai-wrapper";
@@ -85,15 +99,27 @@ function renderMessage(role, text) {
         avatar.className = "ai-avatar";
 
         const img = document.createElement("img");
-        img.src = "/static/img/ai.jpg";        
+        img.src = "/static/img/ai.png";        
         img.alt = "ai";
         img.className = "ai-img";
 
         const bubble = document.createElement("div");
         bubble.className = "msg ai";
         bubble.dir = "rtl";
-        bubble.innerHTML = text; 
-        bubble.innerHTML += `<br><br><span style="font-size: smaller;">${now.getHours()}:${now.getMinutes()}</span>`;
+
+        const textSpan = document.createElement("span");
+        textSpan.className = "msg-text";
+        textSpan.innerHTML = text;
+
+        const timeSpan = document.createElement("span");
+        timeSpan.className = "msg-time";
+        timeSpan.style.fontSize = "smaller";
+        timeSpan.textContent = timeStr;
+
+        bubble.appendChild(textSpan);
+        bubble.appendChild(document.createElement("br"));
+        bubble.appendChild(document.createElement("br"));
+        bubble.appendChild(timeSpan);
 
         avatar.appendChild(img);
         wrapper.appendChild(avatar);
@@ -107,8 +133,20 @@ function renderMessage(role, text) {
     const div = document.createElement("div");
     div.className = "msg user";
     div.dir = "rtl";
-    div.innerHTML = text; 
-    div.innerHTML += `<br><br><span style="font-size: smaller;">${now.getHours()}:${now.getMinutes()}</span>`;
+
+    const textSpan = document.createElement("span");
+    textSpan.className = "msg-text";
+    textSpan.innerHTML = text;
+
+    const timeSpan = document.createElement("span");
+    timeSpan.className = "msg-time";
+    timeSpan.style.fontSize = "smaller";
+    timeSpan.textContent = timeStr;
+
+    div.appendChild(textSpan);
+    div.appendChild(document.createElement("br"));
+    div.appendChild(document.createElement("br"));
+    div.appendChild(timeSpan);
 
     messagesDiv.appendChild(div);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
@@ -128,7 +166,11 @@ sendBtn.onclick = async () => {
     sendBtn.disabled = true;
     input.disabled = true;
 
-    const aiDiv = renderMessage("ai", "...");
+    const aiDiv = renderMessage("ai", `
+        <span class="typing-indicator">
+            <span></span><span></span><span></span>
+        </span>
+    `);
 
     try {
         const response = await fetch("/chat-api/", {
@@ -143,13 +185,12 @@ sendBtn.onclick = async () => {
         });
 
         const data = await response.json();
+        const textSpan = aiDiv.querySelector(".msg-text");
 
         if (data.reply) {
-            aiDiv.innerText = data.reply
-            aiDiv.innerHTML += `<br><br><span style="font-size: smaller;">${now.getHours()}:${now.getMinutes()}</span>`;
+            textSpan.innerHTML = formatAIMessage(data.reply);
         } else {
-            aiDiv.innerText = "خطا در دریافت پاسخ"
-            aiDiv.innerHTML += `<br><br><span style="font-size: smaller;">${now.getHours()}:${now.getMinutes()}</span>`;
+            textSpan.innerHTML = "خطا در دریافت پاسخ";
         }
 
         if (data.chat_id && data.chat_id !== pk) {
@@ -162,11 +203,17 @@ sendBtn.onclick = async () => {
         }
 
     } catch (err) {
-        aiDiv.innerText = "خطا در ارتباط با سرور";
-        aiDiv.innerHTML += `<br><br><span style="font-size: smaller;">${now.getHours()}:${now.getMinutes()}</span>`;
+        aiDiv.querySelector(".msg-text").innerText = "خطا در ارتباط با سرور";
     }
 
     sendBtn.disabled = false;
     input.disabled = false;
     input.focus();
 };
+
+input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && !sendBtn.disabled) {
+        event.preventDefault();
+        sendBtn.click();
+    }
+});

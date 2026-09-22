@@ -2,6 +2,7 @@ from django.db import models
 
 class Conversation(models.Model):
     user = models.CharField(verbose_name='کاربر', max_length=500)
+    title = models.CharField(verbose_name='عنوان', max_length=500)
 
     class Meta:
         verbose_name = 'گفت و گو'
