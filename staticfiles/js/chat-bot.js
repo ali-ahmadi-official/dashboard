@@ -8,11 +8,11 @@ const listPanel = document.getElementById('list-panel');
 const now = new Date();
 
 const path = window.location.pathname;
-const match = path.match(/\/chat-bot\/(\d+)(?:\/|$)/);
+const match = path.match(/\/chat-bot\/([^/]+)(?:\/|$)/);
 
-let pk = ""
+let token = ""
 if (match) {
-    pk = match[1];
+    token = match[1];
 }
 
 messagesDiv.scrollTop = messagesDiv.scrollHeight;
@@ -179,7 +179,7 @@ sendBtn.onclick = async () => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                pk: pk,
+                token: token,
                 userText: userText
             })
         });
@@ -193,12 +193,12 @@ sendBtn.onclick = async () => {
             textSpan.innerHTML = "خطا در دریافت پاسخ";
         }
 
-        if (data.chat_id && data.chat_id !== pk) {
+        if (data.chat_token && data.chat_token !== token) {
             
-            pk = data.chat_id;
+            token = data.chat_token;
 
             if (window.location.pathname === '/chat-bot/') {
-                window.location.href = `/chat-bot/${pk}/`;
+                window.location.href = `/chat-bot/${token}/`;
             }
         }
 

@@ -1,6 +1,9 @@
+import uuid
+
 from django.db import models
 
 class Conversation(models.Model):
+    token = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, verbose_name="توکن گفتگو")
     user = models.CharField(verbose_name='کاربر', max_length=500)
     title = models.CharField(verbose_name='عنوان', max_length=500)
 

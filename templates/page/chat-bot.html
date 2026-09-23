@@ -84,8 +84,8 @@
                     <li>گفت‌وگو جدید &#x2795;</li>
                 </a>
                 {% for chat in chat_list %}
-                <a href="{% url 'chat' chat.id %}">
-                    <li dir="rtl" {% if conversation.id == chat.id %} style="background-color: var(--bg-secondary);" {% endif %}>
+                <a href="{% url 'chat' chat.token %}">
+                    <li dir="rtl" {% if conversation.token == chat.token %} style="background-color: var(--bg-secondary);" {% endif %}>
                         &#128172; {{ chat.title|truncatechars:25 }}
                     </li>
                 </a>
